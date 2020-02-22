@@ -1,10 +1,7 @@
 from random import choice
 
-taille = 4
-color = ['jaune', 'bleu', 'rouge', 'vert']
-
-def soluce_def():
+def soluce_def(color):
     soluce = []
-    for i in range(taille):
+    for i in range(4):
         soluce.append(choice(color))
     return soluce
