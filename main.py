@@ -61,7 +61,7 @@ while True :
             quit()
         if event.type == pygame.KEYDOWN:
             if event.key == K_SPACE:
-                fill_tab(x, (BLUE,RED,YELLOW,choice(color)))
+                fill_tab(x, (choice(color),choice(color),choice(color),choice(color)))
                 x += 1
                 if x == 12 :
                     pygame.quit()
