@@ -17,6 +17,7 @@ YELLOW = (210,210,0)
 BLACK = (0,0,0)
 WHITE = (255,255,255)
 GRAY = (130,130,130)
+FONT_COLOR = (239,231,181)
 
 color = [YELLOW, BLUE, RED, GREEN]
 
@@ -26,6 +27,7 @@ user = []
 result = [0,0,0] #yes, no, maybe
 yes = "0"
 maybe = "0"
+current_time = -1
 
 pygame.display.set_caption('Mastermind')
 screen = pygame.display.set_mode((width,height))
@@ -53,6 +55,7 @@ def affiche():
     front_image = pygame.transform.scale(front_image, (width, height))
     screen.blit(grille, (45,45,width_master,height_master))
     screen.blit(front_image, (0,0,width,height))
+    text_draw(str(current_time), (140-13*len(str(current_time)),435), FONT_COLOR, 30)
     return_result()
     pygame.display.update()
 
@@ -100,9 +103,9 @@ def return_result():
         yes =  str(result[0])
         maybe = str(result[1])
     str_result_yes = "YES = " + yes
-    text_draw(str_result_yes, (590,425), WHITE, 25)
+    text_draw(str_result_yes, (620,427), FONT_COLOR, 25)
     str_result_in = "IN = " + maybe
-    text_draw(str_result_in, (590,450), WHITE, 25)
+    text_draw(str_result_in, (635,452), FONT_COLOR, 25)
     pygame.display.update()
 
 def check():
@@ -140,7 +143,13 @@ def restart():
     x = 0
 
 affiche()
+start = int(time.time())
 while x != 12 :
+    if int(time.time()-start) != current_time: #Timer
+        current_time = int(time.time())-start
+        print(int(time.time())-start)
+        affiche()
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
